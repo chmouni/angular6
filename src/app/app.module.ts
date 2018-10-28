@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PageNavigationComponent } from './page-navigation/page-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MenuComponent } from './menu/menu.component';
+import {DemoMaterialModule} from './material-module';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNavigationComponent
+    MenuComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -21,13 +23,10 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    DemoMaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 
