@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from './../../services/github.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  private userName: String;
+  private gitProfile:any;
 
-  constructor() { }
+  constructor(private githubService: GithubService) { }
 
   ngOnInit() {
+    this.userName = this.githubService.getUser();
+    this.gitProfile = this.githubService.getGithubProfile();
   }
 
+  setUserName(){
+    this.githubService.setUser(this.userName);
+  }
+
+  getGithubProfile(){
+    this.githubService.fetchGithubProfile()
+    .subscribe(profile => this.gitProfile = profile);
+  }
 }
