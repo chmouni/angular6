@@ -7,15 +7,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MenuComponent } from './menu/menu.component';
 import {DemoMaterialModule} from './material-module';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
