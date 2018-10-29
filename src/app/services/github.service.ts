@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Url } from 'url';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -12,11 +13,12 @@ const httpOptions = {
 })
 export class GithubService {
   private githubUrl = 'https://api.github.com';
-  private githubProfile: any;
-
-  constructor(private http: HttpClient,) { }
   private userName: String = '';
   private githubUserProfile: any;
+  private githubUserFollowers;
+
+  constructor(private http: HttpClient,) { }
+
 
   getUser(){
     return this.userName;
@@ -30,6 +32,10 @@ export class GithubService {
     return this.githubUserProfile;
   }
 
+  getGithubFollowers(){
+    return this.githubUserFollowers;
+  }
+
   fetchGithubProfile(){
     return this.http.get(this.githubUrl+'/users/'+this.userName)
     .pipe(
@@ -38,6 +44,14 @@ export class GithubService {
     );
   }
 
+  fetchGithubFollowers() {
+    return this.http.get(this.githubUrl+'/users/'+this.userName+'/followers')
+    .pipe(
+      tap(gitFollowers => this.githubUserFollowers = gitFollowers),
+      catchError(this.handleError('fetchGithubFollowers', []))
+    );
+  }
+  
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
  

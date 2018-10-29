@@ -9,12 +9,14 @@ import { GithubService } from './../../services/github.service'
 export class DashboardComponent implements OnInit {
   private userName: String;
   private gitProfile:any;
+  private gitFollowers:any;
 
   constructor(private githubService: GithubService) { }
 
   ngOnInit() {
     this.userName = this.githubService.getUser();
     this.gitProfile = this.githubService.getGithubProfile();
+    this.gitFollowers = this.githubService.getGithubFollowers()
   }
 
   setUserName(){
@@ -25,4 +27,5 @@ export class DashboardComponent implements OnInit {
     this.githubService.fetchGithubProfile()
     .subscribe(profile => this.gitProfile = profile);
   }
+   
 }

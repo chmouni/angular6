@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -14,6 +13,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { FollowersComponent } from './components/followers/followers.component';
+
 
 
 @NgModule({
@@ -23,6 +24,9 @@ import { GalleryComponent } from './components/gallery/gallery.component';
     ContactComponent,
     DashboardComponent,
     GalleryComponent,
+    FollowersComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

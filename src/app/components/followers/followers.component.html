@@ -1,0 +1,14 @@
+{{userName}}
+<br/>
+<img [src]="gitProfile?.avatar_url" width="200px;"/>
+<div> {{gitProfile?.bio}} </div>
+<br/>
+<mat-form-field class="example-full-width">
+  <input matInput [(ngModel)]="userName" (change)="setUserName()" placeholder="Enter User Name" value="Sushi">
+</mat-form-field>
+<button mat-button (click)="getGithubFollowers()">Get Followers</button>
+<h2>Followers</h2>
+<div *ngFor="let follower of gitFollowers">
+  <img [src]="follower?.avatar_url" width="200px;"/>
+  <div> {{follower?.bio}} </div>
+</div>
