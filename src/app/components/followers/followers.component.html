@@ -9,6 +9,12 @@
 <button mat-button (click)="getGithubFollowers()">Get Followers</button>
 <h2>Followers</h2>
 <div *ngFor="let follower of gitFollowers">
-  <img [src]="follower?.avatar_url" width="200px;"/>
+  <img [src]="follower?.avatar_url" width="50px;"/>
   <div> {{follower?.bio}} </div>
+  <span>{{follower.login}}</span><button mat-button (click)="getGithubFollowersinner(follower)">Followers</button>
+  <div *ngFor="let innerfollower of follower?.gitFollowers">
+    <img [src]="innerfollower?.avatar_url" width="20px;"/>
+    <div> {{innerfollower?.bio}} </div>
+    <span>{{innerfollower?.login}}</span>
+  </div>
 </div>

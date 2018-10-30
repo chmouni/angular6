@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { GithubService } from './../../services/github.service';
+import { copyStyles } from '@angular/animations/browser/src/util';
+import { Hash } from 'crypto';
 
 @Component({
   selector: 'app-followers',
@@ -9,8 +11,10 @@ import { GithubService } from './../../services/github.service';
 export class FollowersComponent implements OnInit {
   private userName: String;
   private gitFollowers: any;
-  private gitProfile: any
-  constructor(private githubService: GithubService) {}
+  private gitProfile: any;
+  private gitFollowersinner: any;
+
+  constructor(private githubService: GithubService, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.userName = this.githubService.getUser();
@@ -27,6 +31,15 @@ export class FollowersComponent implements OnInit {
     .subscribe(
       data => { 
         this.gitFollowers = data;
+        }
+      );
+  }
+
+  getGithubFollowersinner(follower: any){
+    this.githubService.fetchGithubFollowersinner(follower.login)
+    .subscribe(
+        data => {
+          follower.gitFollowers = data;
         }
       );
   }

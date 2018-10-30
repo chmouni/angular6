@@ -16,7 +16,8 @@ export class GithubService {
   private userName: String = '';
   private githubUserProfile: any;
   private githubUserFollowers;
-
+  private githubUserFollowersinner;
+  
   constructor(private http: HttpClient,) { }
 
 
@@ -35,7 +36,7 @@ export class GithubService {
   getGithubFollowers(){
     return this.githubUserFollowers;
   }
-
+  
   fetchGithubProfile(){
     return this.http.get(this.githubUrl+'/users/'+this.userName)
     .pipe(
@@ -51,7 +52,15 @@ export class GithubService {
       catchError(this.handleError('fetchGithubFollowers', []))
     );
   }
+
+  fetchGithubFollowersinner(name: string) {
+    return this.http.get(this.githubUrl+'/users/'+name+'/followers')
+    .pipe(
+      catchError(this.handleError('fetchGithubFollowersinner', []))
+    );
+  }
   
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
  
